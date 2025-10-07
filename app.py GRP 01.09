@@ -1,3 +1,0 @@
-import streamlit as st
-
-st.write ("hooraym we connected everything")
