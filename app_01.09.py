@@ -19,3 +19,7 @@ n = st.number_input("n (≥ 0)", min_value=0, step=1)
 if st.button("Compute"):
     result = fibonacci(int(n))
     st.write(f"F({n}) = {result}")
+
+if st.button("Are you happy now?"):
+    st.balloons()
+
