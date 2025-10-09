@@ -50,3 +50,6 @@ if st.button("Let it snow"):
         st.snow()
     except AttributeError:
         st.info("Your Streamlit version doesn't support `st.snow()`. Upgrade with: pip install -U streamlit")
+
+
+st.button("fuck you")
