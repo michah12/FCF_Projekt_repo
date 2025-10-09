@@ -41,3 +41,12 @@ if st.button("Compute"):
 
 if st.button("Celebrate"):
     st.balloons()
+
+if st.button("Let it snow"):
+    # Streamlit provides a fun `st.snow()` visual effect in newer versions.
+    # If your Streamlit version doesn't include st.snow(), this will raise
+    # an AttributeError — upgrade Streamlit (pip install -U streamlit)
+    try:
+        st.snow()
+    except AttributeError:
+        st.info("Your Streamlit version doesn't support `st.snow()`. Upgrade with: pip install -U streamlit")
