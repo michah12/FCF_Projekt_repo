@@ -1,24 +1,43 @@
 import streamlit as st
+from functools import lru_cache
+from typing import Optional
 
-st.write ("Horray, we connected everything!")
+st.write("Hooray — we connected everything!")
 
-# define fibonacci first
-def fibonacci(n=0):
+
+@lru_cache(maxsize=None)
+def fibonacci(n: int) -> int:
+    """Return the n-th Fibonacci number (0-indexed).
+
+    This implementation uses memoization to avoid exponential recursion.
+    """
+    if n < 0:
+        raise ValueError("n must be a non-negative integer")
     if n == 0:
         return 0
-    elif n == 1:
+    if n == 1:
         return 1
-    else:
-        return fibonacci(n-1) + fibonacci(n-2)
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+
+def format_result(n: int, value: Optional[int]) -> str:
+    if value is None:
+        return "No result"
+    return f"F({n}) = {value}"
+
 
 # streamlit UI
 st.title("Fibonacci App")
 
-n = st.number_input("n (≥ 0)", min_value=0, step=1)
+# use an integer input and a small default
+n = st.number_input("n (≥ 0)", min_value=0, value=10, step=1)
 
 if st.button("Compute"):
-    result = fibonacci(int(n))
-    st.write(f"F({n}) = {result}")
+    try:
+        result = fibonacci(int(n))
+        st.success(format_result(int(n), result))
+    except Exception as e:
+        st.error(f"Error computing Fibonacci: {e}")
 
 if st.button("Celebrate"):
     st.balloons()
