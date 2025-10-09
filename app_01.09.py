@@ -20,6 +20,5 @@ if st.button("Compute"):
     result = fibonacci(int(n))
     st.write(f"F({n}) = {result}")
 
-if st.button("Are you happy now?"):
+if st.button("Celebrate"):
     st.balloons()
-
